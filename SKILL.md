@@ -17,9 +17,18 @@ agent_created: true
 
 ## 工作流
 
-### Step 0 — 加载规范
+### Step 0 — 加载规范与资产自检
 
 始终先读取 `references/style-guide.md`（技法规范+负面清单）和 `references/prompt-templates.md`（提示词模板），不要凭记忆生成提示词。
+
+**参考图自检（必做，一次即可）**：检查 `assets/` 下是否已有 19 张系列参考图。若缺失（例如本技能经 SkillHub 安装——平台拒收二进制图片，包内不含图），先运行：
+
+```bash
+python scripts/fetch_assets.py
+```
+
+脚本从公开 CDN 拉取缺失的图，已存在的自动跳过；Windows 下若报编码错误，命令前加 `PYTHONIOENCODING=utf-8`。
+若下载失败，**照常继续生成**（不阻塞流程），但须在回复中说明"本次无参考图，画风一致性下降"，并提示用户可手动从 `https://github.com/Noir-R/anime-anthro/tree/main/assets` 下载放入 `assets/`。
 
 ### Step 1 — 确定目标对象
 
@@ -74,7 +83,7 @@ agent_created: true
 ### Step 5 — 生成与锁画风
 
 - 使用 ImageGen 生成。
-- **生成新角色时，把系列中已有的一张图作为 Image reference 参考图传入**，锁定画风与线条。`assets/` 内已内置全套系列参考图（正常比例 14 张 + Q版 5 张，可移植）：
+- **生成新角色时，把系列中已有的一张图作为 Image reference 参考图传入**，锁定画风与线条。`assets/` 内存放全套系列参考图（正常比例 14 张 + Q版 5 张；GitHub 版本自带，SkillHub 版本需先跑 `scripts/fetch_assets.py` 拉取）：
   - **正常比例（style-ref-*，按模型/题材命名）**：`style-ref-智谱-国风礼服`（国风/中式默认）、`style-ref-Kimi-三棱镜长裙`（少女感最强，娘化/柔和题材默认）、`style-ref-GPT-白龙`（幻想种族默认）、`style-ref-DeepSeek-鲸鱼女仆`（女仆系）、`style-ref-Claude-古书`（书卷系）、`style-ref-Grok-战斧`（黑红金高对比）、`style-ref-Qwen-轮椅病号服`、`style-ref-MiniMax-场记板`（现代装）、`style-ref-Mistral-法棍猫耳`、`style-ref-混元-冬装围巾`、`style-ref-LLaMA-羊驼睡衣`、`style-ref-Zai-黑狐`、`style-ref-未确认-紫星猫耳`、`style-ref-09-待确认`。
   - **Q版（chibi-ref-*）**：`chibi-ref-1-黑蓝舞娘`（华丽纱裙）、`chibi-ref-2-紫黑慵懒`（外套混搭）、`chibi-ref-3-国风斗篷冷淡`（中式冷淡）、`chibi-ref-4-白金制服`（制服系）、`chibi-ref-5-运动服`（休闲运动系）。
   - 选取原则：与目标角色的**种族/服装类型/色调**最接近的那张；若本机另有自备图集也可直接使用（路径由使用者自行决定，不在技能内硬编码）。
