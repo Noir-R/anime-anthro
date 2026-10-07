@@ -1,6 +1,13 @@
 ---
 name: ai-model-anime-anthro
+slug: ai-model-anime-anthro
+version: 1.0.0
+displayName: AI 大模型拟人日系立绘
+summary: 把任意 AI 模型、品牌或器物拟人化为日系平涂赛璐璐风格全身立绘，内置 19 张参考图锁定画风。
 description: AI大模型拟人日系立绘生成技能。当用户要求为某个 AI 大模型/产品/品牌（如 GPT、Claude、DeepSeek、Kimi、智谱、Qwen、混元、MiniMax、Mistral、LLaMA、Z.ai 等）设计拟人化角色立绘，或要求生成"AI 娘"/模型拟人/品牌拟人少女立绘，或提及"模型拟人、AI拟人、品牌拟人、AI娘立绘"时使用本技能。产出日系平涂赛璐璐风格、纯色底、全身立绘的角色图，并遵循"模型特点→视觉符号"的设计逻辑。
+tags: [AI娘, 模型拟人, 品牌拟人, 立绘, 插画, 日系, 赛璐璐, Q版]
+license: MIT
+homepage: https://github.com/Noir-R/anime-anthro
 agent_created: true
 ---
 
