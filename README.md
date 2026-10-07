@@ -53,6 +53,10 @@ npx skills add Noir-R/anime-anthro --skill ai-model-anime-anthro
 
 在 [SkillHub](https://skillhub.cn) 搜索「AI 娘」或「拟人立绘」，复制安装指令粘贴到 WorkBuddy 对话框发送即可。
 
+> **注意**：SkillHub 平台拒收二进制媒体（`.png/.jpg/.jpeg/.webp/.svg` 等一律返回 400），因此该渠道的版本**不含 19 张参考图**，包体约 40 KB。首次使用时技能会自动运行 `scripts/fetch_assets.py` 从公开 CDN 拉取参考图；若你的网络访问不了，可从本仓库 `assets/` 手动下载放入。参考图缺失不影响生成，但画风一致性会下降。
+>
+> 需要开箱即用的完整版，请用方式一或方式三（GitHub 仓库自带全套图片）。
+
 ### 方式三：手动放置
 
 ```bash
