@@ -41,12 +41,26 @@
 
 ## 安装
 
-需要 [WorkBuddy](https://www.workbuddy.cn)（本技能调用其 ImageGen 能力）。
+需要 [WorkBuddy](https://www.workbuddy.cn)（本技能调用其 ImageGen 能力）。三种方式任选。
+
+### 方式一：命令行安装（最快）
+
+```bash
+npx skills add Noir-R/anime-anthro --skill ai-model-anime-anthro
+```
+
+### 方式二：从 SkillHub 安装
+
+在 [SkillHub](https://skillhub.cn) 搜索「AI 娘」或「拟人立绘」，复制安装指令粘贴到 WorkBuddy 对话框发送即可。
+
+### 方式三：手动放置
 
 ```bash
 git clone https://github.com/Noir-R/anime-anthro.git ai-model-anime-anthro
 cp -r ai-model-anime-anthro ~/.workbuddy/skills/
 ```
+
+也可以下载本仓库 Release 里的 `ai-model-anime-anthro.zip`，用 WorkBuddy 技能面板的「上传技能」直接导入。
 
 | 系统 | 用户级技能目录 |
 |---|---|
