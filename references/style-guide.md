@@ -1,4 +1,7 @@
-# 技法规范（基于 Astraumbra《各大主流AI大模型拟人形象整理》13 张原图核对）
+# 技法规范（基于 Astraumbra《各大主流AI大模型拟人形象整理》系列原图核对）
+
+> 配套文件：`prompt-templates.md`（模板 + 权威负面清单 + 调用参数）、`pitfalls.md`（防跑偏经验）。
+> 参考图清单的唯一权威源是 `assets/README.md`，本文件不重复罗列。
 
 ## 一、画风 & 线条（最核心，保证画风统一）
 
@@ -33,7 +36,9 @@
 
 > 判定口诀：**能摘下来的特征才允许**——皮肤不能摘，所以皮肤永远保持人类正常肤色。
 
-### 原系列 13 张的符号映射（作为推断新角色的先例库）
+### 原系列符号映射（作为推断新角色的先例库）
+
+> 注：智谱清言（GLM）与 Z.ai 同属智谱，前者为国内产品线、后者为海外版，故视觉符号各自独立成行。
 
 | 模型 | 种族/原型 | 主色 | 标志性道具/梗 |
 |---|---|---|---|
@@ -60,6 +65,23 @@
 - 裙身/配饰印品牌标识符号或 LOGO 字母（蝴蝶结、挂件、刺绣、钥匙扣均可承载）。
 - 鞋：高跟鞋/小皮鞋/靴子/运动鞋，随服装体系变化。
 
+### 器物 / 家电 / 物品拟人（默认走"特征人设"，禁止本体嫁接）
+
+画一个**正常人类少女**，把物品特征降维成服装结构与配饰：
+
+- 功能部件 → 服装结构：门 → 对开襟 / 门缝压边；抽屉 → 分层裙；面板 → 腰包挂饰
+- 标志色 → 角色配色；使用场景小物 → 手持道具
+- **不要把物品本体当身体，也不要往身上挂**（如胸前背一台冰箱）
+
+提示词必须显式写：`a normal human girl wearing elegant clothing, NOT an appliance with arms and legs, the identity is expressed only through fashion details and accessories`。
+
+仅当用户点名要"本体造型"时才走本体嫁接。
+
+### 服装风格必须匹配题材的时代属性
+
+- **现代工业 / 科技产物**（家电、数码、科技品牌）→ 现代都市 / tech-wear / 制服系，参考图用 `style-ref-MiniMax-场记板` 或 `chibi-ref-4-白金制服`，**不得配复古洋装或古风礼服**
+- **传统器物、非遗、古董、历史题材** → 国风礼服 / 古装，参考图用 `style-ref-智谱-国风礼服`
+
 ### 性格可视化示例
 
 冷静书卷气（Claude、Z.ai）、活泼元气（DeepSeek、Grok、MiniMax）、文静优雅（智谱、混元）、慵懒困倦（LLaMA）、病弱坚韧（Qwen）。
@@ -71,19 +93,17 @@
 3. **服饰版型**：跟随服装体系；裙装则大裙摆+荷叶边+多层褶皱。
 4. **特效小元素**：悬浮的小符号（星星、小云、音符、彩虹光），淡淡的、低饱和、少量，不抢人物主体。
 
-## 五、负面清单（必须加入反向提示词）
+## 五、负面清单
 
-```
-cropped, cut off, ugly, deformed, extra limbs, blurry, background scenery, complex background, chibi, 3d render, thick heavy paint, impasto, messy sketch, sketch lines, cross-hatching, watermark, text,
-animal skin, scales on skin, reptilian skin, feathered skin, patterned skin, skin markings, tattoo-like skin pattern, green skin, blue skin, grey skin, non-human skin texture, glossy reptile scales on body
-```
+**权威清单只有一份，在 `prompt-templates.md` 第四节 `{NEGATIVE}`。** 本文件不维护副本，避免两处漂移。
 
-中文对照：裁切、断肢、畸形、多余肢体、模糊、复杂场景背景、Q版、3D渲染、厚涂、潦草草图、排线、水印、意外文字。
+使用要点：ImageGen 没有独立的负面提示词入参，整段清单需并入正向提示词末尾的 `Avoid in the result:` 行，且**不要删词**。
 
 ## 六、额外创作规则
 
 1. **先定符号再画图**：第一步提炼【代表动物 + 品牌主色 + 核心能力道具】，向用户确认后再画。
-2. **固定参考图**：生成新角色时，把系列已有图作为 Image reference 传入 ImageGen 锁死画风线条；选种族/服装类型相近的参考图效果最好。技能 `assets/` 内已内置全套系列参考图（正常比例 14 张，按模型命名：GPT-白龙、Claude-古书、Grok-战斧、Kimi-三棱镜长裙、DeepSeek-鲸鱼女仆、智谱-国风礼服、Qwen-轮椅病号服、MiniMax-场记板、Mistral-法棍猫耳、混元-冬装围巾、LLaMA-羊驼睡衣、Zai-黑狐等），与上表一一对应。
+2. **固定参考图**：生成新角色时，把系列已有图作为 ImageGen 的 `image1` 传入锁死画风线条；选种族/服装类型相近的参考图效果最好。
+   **完整清单见 `assets/README.md`（唯一权威源）**，用 `python scripts/fetch_assets.py --check` 可校验是否齐全。
 3. **统一画幅**：全部竖版 9:16。
 4. **合规**：属于同人二创，不冒充任何公司官方形象。
 
@@ -99,4 +119,4 @@ animal skin, scales on skin, reptilian skin, feathered skin, patterned skin, ski
 6. **构图**：居中、白底、无裁切；人物占画面约 60–75%（头大，占比略低于正常比例版）。
 7. **皮肤红线同样适用**：Q版也必须是正常人类肤色，兽化特征只在配件层。
 8. **负面清单调整**：移除 `chibi`，换入 `realistic proportions, tall body, 7 head tall, long legs, adult body proportions`；其余负面词不变。
-9. **参考图**：`assets/` 内共 5 张 Q版参考——`chibi-ref-1-黑蓝舞娘`（华丽纱裙系）、`chibi-ref-2-紫黑慵懒`（外套+裙现代混搭系）、`chibi-ref-3-国风斗篷冷淡`（中式冷淡系）、`chibi-ref-4-白金制服`（制服系）、`chibi-ref-5-运动服`（休闲运动系），按服装类型就近选用。
+9. **参考图**：`assets/` 内 5 张 Q 版参考，按服装类型就近选用。**清单见 `assets/README.md`（唯一权威源）**。

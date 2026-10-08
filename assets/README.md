@@ -1,7 +1,11 @@
 # assets — 系列参考图
 
+> **本文件的「文件清单」表格是参考图清单的唯一权威源。**
+> `scripts/fetch_assets.py` 会解析这张表来决定下载什么；`SKILL.md` 与 `style-guide.md` 均引用此处，不再各自罗列。
+> **增删改参考图时，改这里就够了。**
+
 存放锁画风用的系列参考图，共 19 张（正常比例 14 张 + Q 版 5 张）。
-生成新角色时选一张作为 ImageGen 的 **Image reference** 传入，用于锚定线稿与上色质感。
+生成新角色时选一张作为 ImageGen 的 **`image1`** 传入，用于锚定线稿与上色质感。
 
 ## 为什么这个目录可能是空的
 
@@ -18,7 +22,7 @@ python scripts/fetch_assets.py
 ```
 
 脚本会从公开 CDN（jsDelivr → GitHub raw）拉取缺失的图片，已存在的自动跳过。
-Windows 下若报 `UnicodeEncodeError`，在命令前加 `PYTHONIOENCODING=utf-8`。
+脚本已内置 UTF-8 输出自愈，正常情况下无需额外设置环境变量。
 
 手动下载：<https://github.com/Noir-R/anime-anthro/tree/main/assets>
 
