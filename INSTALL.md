@@ -28,12 +28,18 @@
 
 ```
 ai-model-anime-anthro/
-├── SKILL.md                      主流程（含四问步骤、审图清单）
+├── SKILL.md                      主流程（提问 → 符号 → 提示词 → 生成 → 审图）
 ├── INSTALL.md                    本文件
+├── CHANGELOG.md                  版本变更记录
 ├── references/
-│   ├── style-guide.md            技法规范 + 符号映射先例库 + Q版规范 + 负面清单
-│   └── prompt-templates.md       正常比例 / Q版 / 转Q版 三套提示词模板
-└── assets/                       全套参考图（已内置，无需外部图片）
+│   ├── style-guide.md            技法规范 + 符号映射先例库 + 服装体系 + Q版规范
+│   ├── prompt-templates.md       槽位定义 + 正/反向模板 + ImageGen 参数速查
+│   └── pitfalls.md               防跑偏经验库（娘化/少年/厚涂/微调/水印）
+├── scripts/
+│   ├── fetch_assets.py           拉取并校验参考图（以 assets/README.md 为清单源）
+│   └── remove_watermark.py       去除生成图右下角自动水印
+└── assets/                       全套参考图
+    ├── README.md                 参考图清单（唯一权威源）
     ├── style-ref-*.jpg           正常比例系列参考 14 张（按模型命名：
     │                             GPT-白龙 / Claude-古书 / Grok-战斧 / Kimi-三棱镜长裙 /
     │                             DeepSeek-鲸鱼女仆 / 智谱-国风礼服 / Qwen-轮椅病号服 /
@@ -45,7 +51,8 @@ ai-model-anime-anthro/
 
 ## 注意事项
 
-- **assets 必须一起带走**，否则换电脑后参考图缺失，画风锁不住。
+- **assets 尽量一起带走**，否则换电脑后参考图缺失，画风锁不住。真缺失也不致命：在技能目录运行
+  `python scripts/fetch_assets.py` 可从公开 CDN 补齐（jsDelivr → GitHub raw 自动回退）。
 - 技能内已内置娘化防跑偏规则（历史人物/武侠题材会强制少女化提示词），无需额外配置。
 - 生成图像会调用图像模型并消耗积分，与在哪台电脑运行无关，走的是同一个账号。
 - 若另一台电脑已有同名技能目录，先备份再覆盖。
